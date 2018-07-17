@@ -6,15 +6,20 @@ require 'json'
 
 get '/show' do
   # Rubyのハッシュを作成、diaryという名前を付ける
-  diary = {
-      id: 1,
-      title: "7/6の日記",
-      content: "ずっと雨がやみませんでした。"
-  }
+  #diary = {
+      #id: 1,
+      #title: "7/6の日記",
+      #content: "ずっと雨がやみませんでした。"
+  #}
 
   # diaryをJSONテキストに変換して返す
   # （Rubyでは、最終行はメソッドの返り値(return)）
-  diary.to_json
+  #diary.to_json
+#get '/show' do
+  param1 = params['param1']
+  param2 = params['param2']
+
+  '1番目: ' + param1 + ', 2番目: ' + param2
 end
 
 # POST /edit
@@ -23,7 +28,7 @@ end
 
 post '/edit' do
   # リクエストボディを読み込む
-  body = request.body.read
+  body = request.body.read.force_encoding("utf-8")
 
   if body == ''
     # HTTPのステータスコード「400」（Bad Request）を返す
